@@ -1,22 +1,16 @@
-from flask import render_template
-import connexion
+from flask import Flask, json, request
+from main import euclidean_distance, knn, mode, mean
 
-# Create the application instance
-app = connexion.App(__name__, specification_dir='./')
+api = Flask(__name__)
 
-# Read the swagger.yml file to configure the endpoints
-app.add_api('swagger.yml')
+@api.route('/api/knn', methods=['POST'])
+def get_result():
+    data = json.loads(request.data)
+    reg_query = [data['query']]
+    reg_k_nearest_neighbors, reg_prediction = knn(
+        data['dataset'], reg_query, k=3, distance_fn=euclidean_distance, choice_fn=mean
+    )
+    return json.dumps(reg_k_nearest_neighbors)
 
-# Create a URL route in our application for "/"
-@app.route('/')
-def home():
-    """
-    This function just responds to the browser ULR
-    localhost:5000/
-    :return:        the rendered template 'home.html'
-    """
-    return render_template('home.html')
-
-# If we're running in stand alone mode, run the application
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    api.run(debug=True) 

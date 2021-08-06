@@ -1,5 +1,5 @@
 from datetime import datetime
-from main import euclidean_distance, knn, mean
+from main import euclidean_distance, knn, mode, mean
 
 def get_timestamp():
     return datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
@@ -21,6 +21,6 @@ def main(dataset, reg):
 
     reg_query = [reg]
     reg_k_nearest_neighbors, reg_prediction = knn(
-        clf_data, reg_query, k=3, distance_fn=euclidean_distance, choice_fn=mean
+        clf_data, reg_query, k=3, distance_fn=euclidean_distance, choice_fn=mode
     )
     return reg_k_nearest_neighbors;
