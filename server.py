@@ -13,4 +13,4 @@ def get_result():
     return json.dumps(reg_k_nearest_neighbors)
 
 if __name__ == '__main__':
-    api.run(debug=True) 
+    api.run(debug=True)
