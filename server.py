@@ -10,6 +10,7 @@ def get_result():
     reg_k_nearest_neighbors, reg_prediction = knn(
         data['dataset'], reg_query, k=3, distance_fn=euclidean_distance, choice_fn=mean
     )
+    print(reg_k_nearest_neighbors);
     return json.dumps(reg_k_nearest_neighbors)
 
 if __name__ == '__main__':
