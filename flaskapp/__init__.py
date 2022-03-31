@@ -1,5 +1,5 @@
 from flask import Flask, json, request
-from flaskapp.main import euclidean_distance, knn, mode, mean
+from main import euclidean_distance, knn, mode, mean
 
 api = Flask(__name__)
 
