@@ -1,13 +1,13 @@
 from flask import Flask, json, request
-from main import euclidean_distance, knn, mode, mean
+from flaskapp.main import euclidean_distance, knn, mode, mean
 
-api = Flask(__name__)
+app = Flask(__name__)
 
-@api.route('/')
+@app.route('/')
 def hello():
     return "Hello, this is a python proyect"
 
-@api.route('/api/knn', methods=['POST'])
+@app.route('/api/knn', methods=['POST'])
 def get_result():
     data = json.loads(request.data)
     
@@ -18,4 +18,4 @@ def get_result():
     return json.dumps(reg_k_nearest_neighbors)
 
 if __name__ == '__main__':
-    api.run()
+    app.run()
